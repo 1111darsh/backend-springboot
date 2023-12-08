@@ -1,4 +1,4 @@
-FROM openjdk:17-ea-slim-buster AS builder
+FROM gradle:jdk17-focal AS builder
 WORKDIR /app
 COPY build.gradle .
 COPY settings.gradle .
@@ -8,7 +8,7 @@ RUN ./gradlew dependencies --no-daemon
 COPY . .
 RUN ./gradlew build
 
-FROM openjdk:17-ea-slim-buster
+FROM gradle:jdk17-focal
 WORKDIR /app
 COPY --from=builder /app/build/libs/backend-springboot-0.0.1-SNAPSHOT.jar .
 EXPOSE 8080
