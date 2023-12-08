@@ -3,7 +3,6 @@ WORKDIR /app
 COPY build.gradle .
 COPY settings.gradle .
 COPY gradlew .
-COPY gradle ./gradle
 RUN ./gradlew --version
 RUN ./gradlew dependencies --no-daemon
 COPY . .
